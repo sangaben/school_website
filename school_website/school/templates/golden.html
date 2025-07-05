@@ -1,0 +1,276 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Golden Brain Campus - Koboko{% endblock %}
+
+{% block content %}
+<style>
+    /* Campus Page Styles */
+    .campus-hero {
+        background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)), 
+                    url("{% static 'images/STAFF GOLDEN.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 5rem 1rem;
+        margin-bottom: 3rem;
+    }
+    
+    .campus-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+    
+    .campus-header {
+        color: #003366;
+        margin-bottom: 2rem;
+        text-align: center;
+        position: relative;
+    }
+    
+    .campus-header h1 {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .campus-header p.lead {
+        font-size: 1.3rem;
+        color: #555;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .campus-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin: 3rem 0;
+    }
+    
+    .campus-info {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .campus-info h2 {
+        color: #003366;
+        margin-top: 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #e8b429;
+    }
+    
+    .grade-levels {
+        margin: 2rem 0;
+    }
+    
+    .grade-card {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+        border-left: 4px solid #e8b429;
+    }
+    
+    .grade-card h3 {
+        color: #003366;
+        margin-top: 0;
+    }
+    
+    .facilities-list {
+        columns: 2;
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    .facilities-list li {
+        margin-bottom: 0.8rem;
+        position: relative;
+        padding-left: 1.5rem;
+    }
+    
+    .facilities-list li:before {
+        content: "✓";
+        color: #e8b429;
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+    }
+    
+    .campus-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 3rem 0;
+    }
+    
+    .gallery-item {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover {
+        transform: translateY(-5px);
+    }
+    
+    .gallery-item img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+    
+    .cta-section {
+        text-align: center;
+        margin: 3rem 0;
+        padding: 2rem;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+    }
+    
+    .cta-button {
+        display: inline-block;
+        background-color: #003366;
+        color: white;
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+    }
+    
+    .cta-button:hover {
+        background-color: #e8b429;
+        color: #003366;
+    }
+    
+    .special-programs {
+        margin: 2rem 0;
+        padding: 1.5rem;
+        background-color: #f0f7ff;
+        border-radius: 8px;
+    }
+    
+    @media (max-width: 992px) {
+        .campus-content {
+            grid-template-columns: 1fr;
+        }
+        
+        .facilities-list {
+            columns: 1;
+        }
+    }
+</style>
+<!-- Hero Section -->
+<section class="campus-hero">
+    <div class="campus-container">
+        <h1>Golden Campus</h1>
+        <p class="lead">Quality education from Nursery through Primary in Koboko</p>
+    </div>
+</section>
+
+<div class="campus-container">
+    <!-- Campus Header -->
+    <div class="campus-header">
+        <h1>Oasis Schools Arua - Golden Campus</h1>
+        <p class="lead">Bringing the Oasis standard of education to Koboko with a focus on bilingual learning</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="campus-content">
+        <div class="campus-info">
+            <h2>About Our Golden Campus</h2>
+            <p>Our Golden Campus in Koboko Town offers education from Nursery through Primary 7, with a special emphasis on bilingual education and cultural exchange. We serve both local and international families in the region.</p>
+            
+            <p>The campus combines our proven educational approach with local cultural elements, creating a unique learning experience that prepares students for success in both local and global contexts.</p>
+            
+            <div class="grade-levels">
+                <h2>Grade Levels Offered</h2>
+                <div class="grade-card">
+                    <h3>Early Years (Nursery)</h3>
+                    <p>Bilingual early childhood program focusing on language development through play.</p>
+                </div>
+                <div class="grade-card">
+                    <h3>Lower Primary (P1-P3)</h3>
+                    <p>Foundational bilingual education with emphasis on both English and local languages.</p>
+                </div>
+                <div class="grade-card">
+                    <h3>Upper Primary (P4-P7)</h3>
+                    <p>Advanced curriculum with specialized teachers and cultural studies.</p>
+                </div>
+            </div>
+            
+            <div class="special-programs">
+                <h3>Special Programs</h3>
+                <ul class="facilities-list">
+                    <li>Bilingual immersion program</li>
+                    <li>Cultural heritage studies</li>
+                    <li>Agricultural education</li>
+                    <li>Community service learning</li>
+                    <li>Traditional arts and crafts</li>
+                    <li>Local language preservation</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="campus-info">
+            <h2>Campus Facilities</h2>
+            <ul class="facilities-list">
+                <li>Bright, airy classrooms</li>
+                <li>Bilingual learning resources</li>
+                <li>Agricultural demonstration garden</li>
+                <li>Cultural heritage center</li>
+                <li>Computer lab with language software</li>
+                <li>Multi-purpose hall</li>
+                <li>School kitchen and dining area</li>
+                <li>Secure perimeter fencing</li>
+                <li>Outdoor learning spaces</li>
+                <li>Traditional craft workshop</li>
+                <li>Community meeting space</li>
+                <li>Rainwater harvesting system</li>
+            </ul>
+            
+            <h2 style="margin-top: 2rem;">Our Educational Approach</h2>
+            <ul class="facilities-list">
+                <li>Cultural appreciation</li>
+                <li>Language immersion</li>
+                <li>Practical life skills</li>
+                <li>Community connectedness</li>
+                <li>Environmental stewardship</li>
+                <li>Local relevance</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Photo Gallery -->
+    <h2 style="text-align: center; margin-bottom: 1.5rem;">Campus Life at Golden Campus</h2>
+    <div class="campus-gallery">
+        <div class="gallery-item">
+            <img src="{% static 'images/golden-class.jpg' %}" alt="Classroom">
+        </div>
+        <div class="gallery-item">
+            <img src="{% static 'images/golden-garden.jpg' %}" alt="School garden">
+        </div>
+        <div class="gallery-item">
+            <img src="{% static 'images/golden-cultural.jpg' %}" alt="Cultural event">
+        </div>
+        <div class="gallery-item">
+            <img src="{% static 'images/golden-community.jpg' %}" alt="Community activity">
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="cta-section">
+        <h2>Discover Our Unique Bilingual Program</h2>
+        <p>Visit our Golden Campus in Koboko to learn more</p>
+        <a href="{% url 'contact' %}" class="cta-button">
+            Contact Us Today <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ news.title }} - Oasis Schools Arua{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <article class="news-detail">
+        <!-- Article Header -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 font-weight-bold text-primary mb-3">{{ news.title }}</h1>
+            <div class="d-flex justify-content-center align-items-center">
+                <span class="badge badge-pill badge-light text-muted mr-3">
+                    <i class="far fa-calendar-alt mr-2"></i>{{ news.published_date|date:"F j, Y" }}
+                </span>
+                {% if news.author %}
+                <span class="badge badge-pill badge-light text-muted">
+                    <i class="fas fa-user-edit mr-2"></i>{{ news.author.get_full_name|default:news.author.username }}
+                </span>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Featured Image -->
+        {% if news.image %}
+        <div class="mb-5 text-center">
+            <img src="{{ news.image.url }}" alt="{{ news.title }}" 
+                 class="img-fluid rounded-lg shadow" style="max-height: 500px; width: auto;">
+        </div>
+        {% endif %}
+        
+        <!-- Article Content -->
+        <div class="news-content bg-white p-4 p-lg-5 rounded-lg shadow-sm">
+            <div class="article-body" style="max-width: 800px; margin: 0 auto;">
+                {{ news.content|safe }}
+            </div>
+        </div>
+
+        <!-- Sharing Options -->
+        <div class="text-center mt-5">
+            <h5 class="mb-3 text-muted">Share this news</h5>
+            <div class="d-flex justify-content-center">
+                <a href="#" class="btn btn-sm btn-outline-primary mx-2 rounded-pill px-3">
+                    <i class="fab fa-facebook-f mr-2"></i>Facebook
+                </a>
+                <a href="#" class="btn btn-sm btn-outline-info mx-2 rounded-pill px-3">
+                    <i class="fab fa-twitter mr-2"></i>Twitter
+                </a>
+                <a href="#" class="btn btn-sm btn-outline-danger mx-2 rounded-pill px-3">
+                    <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+                </a>
+                <a href="#" class="btn btn-sm btn-outline-secondary mx-2 rounded-pill px-3">
+                    <i class="fas fa-envelope mr-2"></i>Email
+                </a>
+            </div>
+        </div>
+    </article>
+    
+    <!-- Back Button -->
+    <div class="text-center mt-5">
+        <a href="{% url 'news_list' %}" class="btn btn-outline-primary rounded-pill px-4">
+            <i class="fas fa-arrow-left mr-2"></i>Back to All News
+        </a>
+    </div>
+
+    <!-- Related News (Optional) -->
+    <div class="mt-5 pt-5 border-top">
+        <h4 class="mb-4 font-weight-bold">More Recent News</h4>
+        <div class="row">
+            <!-- You would loop through related news here -->
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <small class="text-muted">June 15, 2023</small>
+                        <h5 class="mt-2">School Wins Regional Science Competition</h5>
+                        <p class="card-text">Our students demonstrated exceptional talent at the annual science fair...</p>
+                        <a href="#" class="btn btn-sm btn-link text-primary p-0">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <small class="text-muted">May 28, 2023</small>
+                        <h5 class="mt-2">New Library Facility Opened</h5>
+                        <p class="card-text">The school inaugurated its state-of-the-art library with over 10,000 books...</p>
+                        <a href="#" class="btn btn-sm btn-link text-primary p-0">Read more</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <small class="text-muted">May 10, 2023</small>
+                        <h5 class="mt-2">Annual Sports Day Results</h5>
+                        <p class="card-text">Exciting competitions and record-breaking performances marked this year's event...</p>
+                        <a href="#" class="btn btn-sm btn-link text-primary p-0">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .news-content {
+        line-height: 1.8;
+        font-size: 1.1rem;
+        color: #444;
+    }
+    
+    .news-content img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin: 2rem auto;
+        display: block;
+    }
+    
+    .news-content h2, 
+    .news-content h3, 
+    .news-content h4 {
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--primary);
+    }
+    
+    .news-content p {
+        margin-bottom: 1.5rem;
+    }
+    
+    .news-content ul,
+    .news-content ol {
+        margin-bottom: 1.5rem;
+        padding-left: 2rem;
+    }
+    
+    .news-content blockquote {
+        border-left: 4px solid var(--primary);
+        padding-left: 1.5rem;
+        margin: 2rem 0;
+        font-style: italic;
+        color: #666;
+    }
+</style>
+{% endblock %}

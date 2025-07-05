@@ -1,0 +1,487 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Nursery Program - Oasis Schools Arua{% endblock %}
+
+{% block content %}
+<style>
+    /* Nursery Page Styles */
+    .nursery-hero {
+        background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)), 
+                    url("{% static 'images/nursery-hero.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 6rem 1rem;
+        margin-bottom: 3rem;
+    }
+    
+    .nursery-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    
+    .nursery-hero p {
+        font-size: 1.3rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .nursery-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem 4rem;
+    }
+    
+    .nursery-intro {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .nursery-intro h2 {
+        color: #003366;
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .nursery-intro h2::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -10px;
+        width: 80px;
+        height: 4px;
+        background-color: #e8b429;
+        transform: translateX(-50%);
+    }
+    
+    .nursery-intro p {
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+        color: #555;
+    }
+    
+    .nursery-classes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .nursery-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .nursery-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .nursery-header {
+        background-color: #e8b429;
+        color: #003366;
+        padding: 1.5rem;
+        text-align: center;
+    }
+    
+    .nursery-header h3 {
+        font-size: 1.8rem;
+        margin: 0;
+    }
+    
+    .nursery-header p {
+        margin: 0.5rem 0 0;
+        font-weight: 500;
+        font-size: 0.9rem;
+    }
+    
+    .nursery-content {
+        padding: 1.5rem;
+    }
+    
+    .learning-areas {
+        margin-bottom: 1.5rem;
+    }
+    
+    .learning-areas h4 {
+        color: #003366;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .learning-areas h4::before {
+        content: '\f518';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        margin-right: 10px;
+        color: #e8b429;
+    }
+    
+    .areas-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+    }
+    
+    .area-item {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 0;
+    }
+    
+    .area-item::before {
+        content: '\f0a4';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        font-size: 0.7rem;
+        color: #e8b429;
+        margin-right: 10px;
+    }
+    
+    .nursery-features {
+        border-top: 1px solid #eee;
+        padding-top: 1.5rem;
+    }
+    
+    .nursery-features h4 {
+        color: #003366;
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .nursery-features h4::before {
+        content: '\f06c';
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        margin-right: 10px;
+        color: #e8b429;
+    }
+    
+    .features-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .feature-tag {
+        background-color: #f5f5f5;
+        color: #003366;
+        padding: 0.3rem 0.8rem;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    
+    .schedule {
+        margin-top: 1.5rem;
+        background-color: #f9f9f9;
+        padding: 1rem;
+        border-radius: 5px;
+    }
+    
+    .schedule h4 {
+        color: #003366;
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+    }
+    
+    .schedule-item {
+        display: flex;
+        margin-bottom: 0.5rem;
+    }
+    
+    .schedule-time {
+        font-weight: 600;
+        min-width: 80px;
+        color: #e8b429;
+    }
+    
+    .nursery-btn {
+        display: block;
+        text-align: center;
+        background-color: #003366;
+        color: white;
+        padding: 0.8rem;
+        border-radius: 5px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        margin-top: 1.5rem;
+    }
+    
+    .nursery-btn:hover {
+        background-color: #e8b429;
+        color: #003366;
+    }
+    
+    @media (max-width: 768px) {
+        .nursery-hero {
+            padding: 4rem 1rem;
+        }
+        
+        .nursery-hero h1 {
+            font-size: 2.2rem;
+        }
+        
+        .nursery-hero p {
+            font-size: 1.1rem;
+        }
+        
+        .areas-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="nursery-hero">
+    <h1>Nursery Program</h1>
+    <p>Our nurturing early childhood education for children ages 3-5 years</p>
+</section>
+
+<!-- Nursery Content -->
+<div class="nursery-container">
+    <div class="nursery-intro">
+        <h2>Early Years Foundation</h2>
+        <p>At Oasis Schools Arua, we provide a warm, stimulating environment where our youngest learners develop through play, exploration, and guided activities.</p>
+    </div>
+    
+    <div class="nursery-classes">
+        <!-- Baby Class -->
+        <div class="nursery-card">
+            <div class="nursery-header">
+                <h3>Baby Class</h3>
+                <p>Ages 3-4 years</p>
+            </div>
+            <div class="nursery-content">
+                <div class="learning-areas">
+                    <h4>Key Learning Areas</h4>
+                    <div class="areas-grid">
+                        <div class="area-item">Language Development</div>
+                        <div class="area-item">Sensory Play</div>
+                        <div class="area-item">Social Skills</div>
+                        <div class="area-item">Fine Motor Skills</div>
+                        <div class="area-item">Music & Movement</div>
+                        <div class="area-item">Creative Expression</div>
+                    </div>
+                </div>
+                
+                <div class="nursery-features">
+                    <h4>Program Features</h4>
+                    <div class="features-list">
+                        <span class="feature-tag">Montessori Materials</span>
+                        <span class="feature-tag">Toilet Training</span>
+                        <span class="feature-tag">Storytelling</span>
+                        <span class="feature-tag">Outdoor Play</span>
+                        <span class="feature-tag">Nap Time</span>
+                        <span class="feature-tag">Show & Tell</span>
+                    </div>
+                </div>
+                
+                <div class="schedule">
+                    <h4>Sample Daily Routine</h4>
+                    <div class="schedule-item">
+                        <span class="schedule-time">8:00-8:30</span>
+                        <span>Arrival & Free Play</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">8:30-9:00</span>
+                        <span>Circle Time</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">9:00-10:00</span>
+                        <span>Learning Centers</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">10:00-10:30</span>
+                        <span>Snack & Outdoor Play</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">10:30-11:30</span>
+                        <span>Focused Activities</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">11:30-12:30</span>
+                        <span>Lunch & Nap Time</span>
+                    </div>
+                </div>
+                
+                <a href="#" class="nursery-btn">More About Baby Class</a>
+            </div>
+        </div>
+        
+        <!-- Middle Class -->
+        <div class="nursery-card">
+            <div class="nursery-header">
+                <h3>Middle Class</h3>
+                <p>Ages 4-5 years</p>
+            </div>
+            <div class="nursery-content">
+                <div class="learning-areas">
+                    <h4>Key Learning Areas</h4>
+                    <div class="areas-grid">
+                        <div class="area-item">Phonics & Pre-Reading</div>
+                        <div class="area-item">Early Mathematics</div>
+                        <div class="area-item">Science Exploration</div>
+                        <div class="area-item">Creative Arts</div>
+                        <div class="area-item">Physical Development</div>
+                        <div class="area-item">Social Studies</div>
+                    </div>
+                </div>
+                
+                <div class="nursery-features">
+                    <h4>Program Features</h4>
+                    <div class="features-list">
+                        <span class="feature-tag">Jolly Phonics</span>
+                        <span class="feature-tag">Handwriting Practice</span>
+                        <span class="feature-tag">Number Concepts</span>
+                        <span class="feature-tag">Science Experiments</span>
+                        <span class="feature-tag">Drama & Role Play</span>
+                        <span class="feature-tag">Field Trips</span>
+                    </div>
+                </div>
+                
+                <div class="schedule">
+                    <h4>Sample Daily Routine</h4>
+                    <div class="schedule-item">
+                        <span class="schedule-time">8:00-8:30</span>
+                        <span>Arrival & Table Activities</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">8:30-9:00</span>
+                        <span>Morning Meeting</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">9:00-10:00</span>
+                        <span>Literacy & Math Centers</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">10:00-10:30</span>
+                        <span>Snack & Outdoor Play</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">10:30-11:30</span>
+                        <span>Theme Activities</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">11:30-12:30</span>
+                        <span>Lunch & Quiet Time</span>
+                    </div>
+                </div>
+                
+                <a href="#" class="nursery-btn">More About Middle Class</a>
+            </div>
+        </div>
+        
+        <!-- Top Class -->
+        <div class="nursery-card">
+            <div class="nursery-header">
+                <h3>Top Class</h3>
+                <p>Ages 5-6 years</p>
+            </div>
+            <div class="nursery-content">
+                <div class="learning-areas">
+                    <h4>Key Learning Areas</h4>
+                    <div class="areas-grid">
+                        <div class="area-item">Reading Readiness</div>
+                        <div class="area-item">Number Operations</div>
+                        <div class="area-item">Environmental Science</div>
+                        <div class="area-item">Creative Writing</div>
+                        <div class="area-item">Problem Solving</div>
+                        <div class="area-item">Social Development</div>
+                    </div>
+                </div>
+                
+                <div class="nursery-features">
+                    <h4>Program Features</h4>
+                    <div class="features-list">
+                        <span class="feature-tag">Advanced Phonics</span>
+                        <span class="feature-tag">Reading Groups</span>
+                        <span class="feature-tag">Math Applications</span>
+                        <span class="feature-tag">Project Work</span>
+                        <span class="feature-tag">Leadership Roles</span>
+                        <span class="feature-tag">Primary Prep</span>
+                    </div>
+                </div>
+                
+                <div class="schedule">
+                    <h4>Sample Daily Routine</h4>
+                    <div class="schedule-item">
+                        <span class="schedule-time">8:00-8:30</span>
+                        <span>Arrival & Journal Writing</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">8:30-9:00</span>
+                        <span>Morning Meeting</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">9:00-10:00</span>
+                        <span>Literacy Block</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">10:00-10:30</span>
+                        <span>Snack & Outdoor Play</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">10:30-11:30</span>
+                        <span>Math & Science</span>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="schedule-time">11:30-12:30</span>
+                        <span>Lunch & Independent Reading</span>
+                    </div>
+                </div>
+                
+                <a href="#" class="nursery-btn">More About Top Class</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Animation for nursery cards
+    document.addEventListener('DOMContentLoaded', function() {
+        const nurseryCards = document.querySelectorAll('.nursery-card');
+        
+        function animateCards() {
+            nurseryCards.forEach((card, index) => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if(cardPosition < screenPosition) {
+                    card.style.transitionDelay = `${index * 0.1}s`;
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Initialize cards as hidden
+        nurseryCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+        });
+        
+        // Check on load
+        animateCards();
+        
+        // Check on scroll
+        window.addEventListener('scroll', animateCards);
+    });
+</script>
+{% endblock %}

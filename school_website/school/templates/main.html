@@ -1,0 +1,268 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Main Campus - Oasis Schools Arua{% endblock %}
+
+{% block content %}
+<style>
+    /* Campus Page Styles */
+    .campus-hero {
+        background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)), 
+                    url("{% static 'images/main-hero.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 5rem 1rem;
+        margin-bottom: 3rem;
+    }
+    
+    .campus-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+    
+    .campus-header {
+        color: #003366;
+        margin-bottom: 2rem;
+        text-align: center;
+        position: relative;
+    }
+    
+    .campus-header h1 {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .campus-header p.lead {
+        font-size: 1.3rem;
+        color: #555;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .campus-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin: 3rem 0;
+    }
+    
+    .campus-info {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .campus-info h2 {
+        color: #003366;
+        margin-top: 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #e8b429;
+    }
+    
+    .grade-levels {
+        margin: 2rem 0;
+    }
+    
+    .grade-card {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+        border-left: 4px solid #e8b429;
+    }
+    
+    .grade-card h3 {
+        color: #003366;
+        margin-top: 0;
+    }
+    
+    .facilities-list {
+        columns: 2;
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    .facilities-list li {
+        margin-bottom: 0.8rem;
+        position: relative;
+        padding-left: 1.5rem;
+    }
+    
+    .facilities-list li:before {
+        content: "✓";
+        color: #e8b429;
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+    }
+    
+    .campus-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 3rem 0;
+    }
+    
+    .gallery-item {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover {
+        transform: translateY(-5px);
+    }
+    
+    .gallery-item img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+    
+    .cta-section {
+        text-align: center;
+        margin: 3rem 0;
+        padding: 2rem;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+    }
+    
+    .cta-button {
+        display: inline-block;
+        background-color: #003366;
+        color: white;
+        padding: 0.8rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+    }
+    
+    .cta-button:hover {
+        background-color: #e8b429;
+        color: #003366;
+    }
+    
+    .special-programs {
+        margin: 2rem 0;
+        padding: 1.5rem;
+        background-color: #f0f7ff;
+        border-radius: 8px;
+    }
+    
+    @media (max-width: 992px) {
+        .campus-content {
+            grid-template-columns: 1fr;
+        }
+        
+        .facilities-list {
+            columns: 1;
+        }
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="campus-hero">
+    <div class="campus-container">
+        <h1>Main Campus</h1>
+        <p class="lead">Comprehensive education from Nursery through Secondary</p>
+    </div>
+</section>
+
+<div class="campus-container">
+    <!-- Campus Header -->
+    <div class="campus-header">
+        <h1>Oasis Schools Arua - Main Campus</h1>
+        <p class="lead">Our flagship campus offering the complete Oasis educational journey from early childhood to university preparation</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="campus-content">
+        <div class="campus-info">
+            <h2>About Our Main Campus</h2>
+            <p>Located on Nebbi Highway opposite Ceford, our Main Campus provides a complete educational pathway from Nursery through Secondary education. With state-of-the-art facilities and experienced faculty, we offer a nurturing environment for students at every stage of development.</p>
+            
+            <p>The Main Campus is known for its vibrant learning community, excellent academic results, and wide range of co-curricular activities. Our holistic approach ensures students develop intellectually, socially, and emotionally.</p>
+            
+            <div class="grade-levels">
+                <h2>Grade Levels Offered</h2>
+                <div class="grade-card">
+                    <h3>Early Years (Nursery)</h3>
+                    <p>Play-based learning program focusing on social, emotional, and cognitive development for children aged 3-5 years.</p>
+                </div>
+                <div class="grade-card">
+                    <h3>Lower Primary (P1-P3)</h3>
+                    <p>Foundational learning with emphasis on literacy, numeracy, and social skills development.</p>
+                </div>
+                <div class="grade-card">
+                    <h3>Upper Primary (P4-P7)</h3>
+                    <p>Advanced curriculum preparing pupils for secondary education with specialized subject teachers.</p>
+                </div>
+                
+            </div>
+            
+            <div class="special-programs">
+                <h3>Special Programs</h3>
+                <ul class="facilities-list">
+                    <li>International exchange programs</li>
+                    <li>STEM innovation lab</li>
+                    <li>Performing arts academy</li>
+                    <li>Sports excellence program</li>
+                    <li>University preparation courses</li>
+                    <li>Leadership development</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="campus-info">
+            <h2>Campus Facilities</h2>
+            <ul class="facilities-list">
+                <li>Spacious, well-equipped classrooms</li>
+                <li>Science and computer laboratories</li>
+                <li>Library resource center</li>
+                <li>Sports complex with swimming pool</li>
+                <li>Auditorium for performances</li>
+                <li>Dining hall and cafeteria</li>
+                <li>Health clinic with full-time nurse</li>
+                <li>Secure campus with 24/7 security</li>
+                <li>Art and music studios</li>
+                <li>Guidance and counseling center</li>
+                <li>Wi-Fi enabled learning spaces</li>
+                <li>School transportation system</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Photo Gallery -->
+    <h2 style="text-align: center; margin-bottom: 1.5rem;">Campus Life at Main Campus</h2>
+    <div class="campus-gallery">
+        <div class="gallery-item">
+            <img src="{% static 'images/main-classroom.jpg' %}" alt="Classroom at Main Campus">
+        </div>
+        <div class="gallery-item">
+            <img src="{% static 'images/main-lab.jpg' %}" alt="Science lab at Main Campus">
+        </div>
+        <div class="gallery-item">
+            <img src="{% static 'images/main-sports.jpg' %}" alt="Sports at Main Campus">
+        </div>
+        <div class="gallery-item">
+            <img src="{% static 'images/main-event.jpg' %}" alt="Event at Main Campus">
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="cta-section">
+        <h2>Experience the Main Campus Difference</h2>
+        <p>Schedule a visit to our flagship campus and discover the Oasis advantage</p>
+        <a href="{% url 'contact' %}" class="cta-button">
+            Contact Us Today <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</div>
+{% endblock %}

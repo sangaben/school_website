@@ -1,0 +1,849 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Oasis Schools Arua - Quality Education in Uganda{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c5e8b;
+            --secondary: #e8b429;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --white: #ffffff;
+            --gray: #6c757d;
+            --text-color: #333333;
+            --text-light: #777777;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        /* Top Bar - Mobile Optimized */
+        .top-bar {
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 0;
+            font-size: 0.8rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .top-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info a:hover {
+            color: var(--secondary);
+        }
+        
+        .contact-info i {
+            margin-right: 5px;
+        }
+        
+        .social-media {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .social-media a {
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .social-media a:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        /* Main Header - Mobile First */
+        .main-header {
+            background-color: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: translateX(2px);
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo-text h1 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 2px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        .logo-text p {
+            color: var(--gray);
+            font-size: 0.7rem;
+            font-style: italic;
+        }
+        
+        /* Mobile Menu Button */
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            transition: transform 0.3s;
+        }
+        
+        .menu-toggle:hover {
+            transform: rotate(90deg);
+        }
+        
+        /* Navigation - Mobile */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 85%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--white);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            padding-top: 70px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .main-nav.active {
+            left: 0;
+        }
+        
+        .main-nav ul {
+            list-style: none;
+        }
+        
+        .main-nav li {
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .main-nav > li > a {
+            display: block;
+            padding: 12px 20px;
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+        }
+        
+        .main-nav > li > a:hover,
+        .main-nav > li > a.active {
+            color: var(--primary);
+            background-color: rgba(0,0,0,0.03);
+        }
+        
+        .dropdown-content {
+            display: none;
+            background-color: #f9f9f9;
+        }
+        
+        .dropdown-content a {
+            padding: 10px 20px 10px 40px;
+            font-size: 0.9rem;
+            color: var(--dark);
+            border-left: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: rgba(0, 51, 102, 0.03);
+            color: var(--primary);
+            border-left: 3px solid var(--secondary);
+        }
+        
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dropdown-toggle i {
+            transition: transform 0.3s;
+        }
+        
+        .dropdown.active .dropdown-toggle i {
+            transform: rotate(180deg);
+        }
+        
+        .btn-admissions {
+            background-color: var(--secondary);
+            color: var(--primary);
+            border-radius: 50px;
+            padding: 10px 20px;
+            margin: 15px;
+            display: block;
+            text-align: center;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+        
+        .btn-admissions:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Close Button */
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            color: var(--dark);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        
+        /* Main Content */
+        main {
+            padding: 2rem 0;
+            min-height: calc(100vh - 400px);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Desktop Styles */
+        @media (min-width: 768px) {
+            .top-bar {
+                font-size: 0.9rem;
+                padding: 10px 0;
+            }
+            
+            .top-container {
+                justify-content: space-between;
+                flex-wrap: nowrap;
+                gap: 0;
+            }
+            
+            .contact-info {
+                gap: 15px;
+            }
+            
+            .social-media a {
+                width: 28px;
+                height: 28px;
+                font-size: 1rem;
+            }
+            
+            .logo img {
+                height: 60px;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.3rem;
+            }
+            
+            .logo-text p {
+                font-size: 0.8rem;
+            }
+            
+            .menu-toggle {
+                display: none;
+            }
+            
+            .main-nav {
+                position: static;
+                width: auto;
+                height: auto;
+                background: transparent;
+                box-shadow: none;
+                padding: 0;
+                display: flex;
+                align-items: center;
+            }
+            
+            .main-nav ul {
+                display: flex;
+                align-items: center;
+            }
+            
+            .main-nav li {
+                border-bottom: none;
+                position: relative;
+                margin: 0 5px;
+            }
+            
+            .main-nav > li > a {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .main-nav > li > a:hover::after,
+            .main-nav > li > a.active::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 15px;
+                right: 15px;
+                height: 3px;
+                background-color: var(--secondary);
+            }
+            
+            .dropdown-content {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                min-width: 220px;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+                border-radius: 0 0 6px 6px;
+                opacity: 0;
+                transform: translateY(10px);
+                transition: all 0.25s;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .dropdown-content a {
+                padding: 10px 15px;
+            }
+            
+            .btn-admissions {
+                margin: 0 0 0 10px;
+                display: inline-block;
+                padding: 8px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .overlay {
+                display: none;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .main-nav > li > a {
+                padding: 12px 18px;
+                font-size: 0.95rem;
+            }
+            
+            .btn-admissions {
+                padding: 10px 25px;
+            }
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+            margin-top: 3rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+        
+        .col-lg-4, .col-lg-3, .col-lg-2, 
+        .col-md-4 {
+            padding: 0 15px;
+            margin-bottom: 2rem;
+        }
+        
+        .col-lg-4 { width: 33.33%; }
+        .col-lg-3 { width: 25%; }
+        .col-lg-2 { width: 16.66%; }
+        
+        .footer-title {
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            color: #adb5bd;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            color: var(--dark);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            color: #adb5bd;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        .contact-info i {
+            margin-right: 1rem;
+            color: var(--secondary);
+            margin-top: 3px;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            min-width: 0;
+            font-size: 0.95rem;
+        }
+        
+        .newsletter-form button {
+            background-color: var(--secondary);
+            color: var(--dark);
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 0 4px 4px 0;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .newsletter-form button:hover {
+            background-color: #d9a326;
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .copyright a {
+            color: var(--secondary);
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+        
+        @media (max-width: 992px) {
+            .col-lg-4, .col-lg-3, .col-lg-2 {
+                width: 50%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .col-lg-4, .col-lg-3, .col-lg-2, .col-md-4 {
+                width: 100%;
+            }
+            
+            .footer-title {
+                font-size: 1.3rem;
+            }
+            
+            .footer-about p,
+            .footer-links a,
+            .contact-info li {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Professional Header with Social Media -->
+    <header>
+        <div class="top-bar">
+            <div class="top-container">
+                <div class="contact-info">
+                    <a href="mailto:info@oasisschools.ac.ug"><i class="fas fa-envelope"></i> info@oasisschools.ac.ug</a>
+                    <a href="tel:+256700000000"><i class="fas fa-phone-alt"></i> +256 700 000000</a>
+                </div>
+                <div class="social-media">
+                    <a href="https://www.facebook.com/oasisschoolsarua" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/oasisschools" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/oasisschoolsarua" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/channel/oasisschoolsarua" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-header">
+            <div class="header-container">
+                <div class="logo">
+                    <img src="{% static 'images/oasis.jpg' %}" alt="Oasis Schools Arua Logo">
+                    <div class="logo-text">
+                        <h1>Oasis Schools Arua</h1>
+                        <p>"Walk the talk"</p>
+                    </div>
+                </div>
+                
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav class="main-nav" id="mainNav">
+                    <button class="close-btn" id="closeBtn" aria-label="Close navigation">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    
+                    <ul>
+                        <li><a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}">Home</a></li>
+                        <li><a href="{% url 'about' %}" class="{% if request.path == '/about/' %}active{% endif %}">About</a></li>
+                        <li class="dropdown">
+                            <a href="{% url 'classes' %}" class="dropdown-toggle {% if request.path == '/classes/' %}active{% endif %}">
+                                Academics <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <div class="dropdown-content">
+                                <a href="{% url 'classes' %}#nursery">Nursery Section</a>
+                                <a href="{% url 'classes' %}#primary">Primary Section</a>
+                                <a href="{% url 'classes' %}#curriculum">Curriculum</a>
+                                <a href="{% url 'classes' %}#faculty">Our Faculty</a>
+                            </div>
+                        </li>
+                        <li class="dropdown">
+                            <a href="{% url 'campus' %}" class="dropdown-toggle {% if request.path == '/campus/' %}active{% endif %}">
+                                Our Campuses <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <div class="dropdown-content">
+                                <a href="{% url 'annex' %}">Annex campus</a>
+                                <a href="{% url 'main' %}">Main campus</a>
+                                <a href="{% url 'muni' %}">Muni campus</a>
+                                <a href="{% url 'golden' %}">Golden Brain campus</a>
+                            </div>
+                        </li>
+                        <li><a href="{% url 'news' %}" class="{% if request.path == '/news/' %}active{% endif %}">News & Events</a></li>
+                        <li><a href="{% url 'gallery' %}" class="{% if request.path == '/gallery/' %}active{% endif %}">Gallery</a></li>
+                        <li><a href="{% url 'admissions' %}" class="btn-admissions">Admissions</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Overlay for mobile menu -->
+    <div class="overlay" id="overlay"></div>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Enhanced Footer -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="footer-about">
+                        <h5 class="footer-title">About Oasis Schools</h5>
+                        <p>Leading Primary education service provider across Uganda since 2014, committed to excellence in holistic child development and academic achievement.</p>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/oasisschoolsarua" title="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/oasisschools" title="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.linkedin.com/company/oasis-schools" title="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.instagram.com/oasisschoolsarua" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.youtube.com/channel/oasisschoolsarua" title="YouTube" target="_blank"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="{% url 'classes' %}">Academic Programs</a></li>
+                        <li><a href="{% url 'campus' %}">Our Campuses</a></li>
+                        <li><a href="{% url 'news' %}">News & Events</a></li>
+                        <li><a href="{% url 'gallery' %}">Gallery</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="footer-title">Contact Info</h5>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 School Road, Arua, Uganda</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>+256 700 000000 (Main Office)</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>info@oasisschools.ac.ug</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Mon-Fri: 8:00AM - 5:00PM<br>Sat: 9:00AM - 1:00PM</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="footer-title">School Newsletter</h5>
+                    <p>Subscribe to receive updates on school news, events, and important announcements.</p>
+                    <form method="post" action="{% url 'home' %}" class="newsletter-form">
+                        {% csrf_token %}
+                        <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                        <button class="btn btn-primary" type="submit">Subscribe</button>
+                    </form>
+                    <div class="emergency-contact" style="margin-top: 1.5rem;">
+                        <h6 style="color: var(--white); margin-bottom: 0.5rem; font-size: 0.95rem;">Emergency Contact:</h6>
+                        <p style="color: #adb5bd; font-size: 0.9rem;">
+                            <i class="fas fa-phone-alt" style="color: var(--secondary);"></i> 
+                            +256 700 111111
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p class="mb-0">&copy; {% now "Y" %} Oasis Schools Arua. All Rights Reserved. 
+                    <a href="{% url 'privacy' %}">Privacy Policy</a> | 
+                    <a href="{% url 'terms' %}">Terms of Service</a> | 
+                    <a href="{% url 'sitemap' %}">Sitemap</a> | 
+                    <a href="https://sanga.com" target="_blank">Developed by sanga</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const menuToggle = document.getElementById('menuToggle');
+        const closeBtn = document.getElementById('closeBtn');
+        const mainNav = document.getElementById('mainNav');
+        const overlay = document.getElementById('overlay');
+        
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeBtn.addEventListener('click', () => {
+            mainNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        overlay.addEventListener('click', () => {
+            mainNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        // Dropdown functionality
+        const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+        
+        dropdownToggles.forEach(toggle => {
+            toggle.addEventListener('click', function(e) {
+                if (window.innerWidth < 768) {
+                    e.preventDefault();
+                    const dropdown = this.parentElement;
+                    dropdown.classList.toggle('active');
+                    
+                    // Close other dropdowns
+                    document.querySelectorAll('.dropdown').forEach(item => {
+                        if (item !== dropdown && item.classList.contains('active')) {
+                            item.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Close dropdowns when clicking outside (desktop)
+        document.addEventListener('click', function(e) {
+            if (window.innerWidth >= 768) {
+                if (!e.target.matches('.dropdown-toggle') && !e.target.closest('.dropdown')) {
+                    document.querySelectorAll('.dropdown').forEach(dropdown => {
+                        dropdown.classList.remove('active');
+                    });
+                }
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

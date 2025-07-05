@@ -1,0 +1,11 @@
+.admin-actions a.button {
+    padding: 2px 5px;
+    background: #417690;
+    color: white;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 12px;
+}
+.admin-actions a.button:hover {
+    background: #205067;
+}

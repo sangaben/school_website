@@ -1,0 +1,145 @@
+<!-- templates/gallery/gallery.html -->
+{% extends 'base.html' %}
+
+{% block title %}Photo Gallery - Oasis Schools Arua{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- Gallery Header -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 font-weight-bold text-primary mb-3">School Gallery</h1>
+        <p class="lead text-muted">Explore moments from our school life</p>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="mb-4 text-center">
+        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-outline-primary active rounded-pill mx-1">
+                <input type="radio" name="options" id="all" autocomplete="off" checked> All
+            </label>
+            {% for category in categories %}
+            <label class="btn btn-outline-primary rounded-pill mx-1" data-filter="{{ category|slugify }}">
+                <input type="radio" name="options" id="{{ category|slugify }}" autocomplete="off"> 
+                {{ category }}
+            </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="row gallery-container">
+        {% for image in images %}
+        <div class="col-lg-4 col-md-6 mb-4 gallery-item" data-category="{{ image.category|slugify }}">
+            <div class="card h-100 border-0 shadow-sm overflow-hidden">
+                <img src="{{ image.image.url }}" class="card-img-top gallery-image" alt="{{ image.title }}" 
+                     style="height: 250px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ image.title }}</h5>
+                    <p class="text-muted small mb-2">
+                        <span class="badge badge-pill badge-light">{{ image.get_category_display }}</span>
+                    </p>
+                    {% if image.description %}
+                    <p class="card-text">{{ image.description|truncatewords:15 }}</p>
+                    {% endif %}
+                </div>
+                <div class="card-footer bg-white border-0">
+                    <button class="btn btn-sm btn-outline-primary view-image" 
+                            data-image="{{ image.image.url }}"
+                            data-title="{{ image.title }}"
+                            data-description="{{ image.description }}"
+                            data-category="{{ image.get_category_display }}">
+                        View Full Image
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info text-center py-4">
+                <i class="fas fa-camera fa-2x mb-3 text-primary"></i>
+                <h4>No gallery images yet</h4>
+                <p class="mb-0">Check back later for updates</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="" id="modalImage" class="img-fluid rounded" alt="">
+                <p class="text-muted mt-3" id="modalCategory"></p>
+                <p class="mt-2" id="modalDescription"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="#" class="btn btn-primary" id="downloadBtn" download>
+                    <i class="fas fa-download mr-2"></i>Download
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .gallery-image {
+        transition: transform 0.3s ease;
+        cursor: pointer;
+    }
+    .gallery-image:hover {
+        transform: scale(1.03);
+    }
+    .gallery-item {
+        transition: all 0.3s ease;
+    }
+    .btn-group-toggle .active {
+        background-color: var(--primary);
+        color: white;
+    }
+</style>
+
+<script>
+$(document).ready(function() {
+    // Category filtering
+    $('[data-filter]').click(function() {
+        const filter = $(this).data('filter');
+        if (filter === 'all') {
+            $('.gallery-item').show();
+        } else {
+            $('.gallery-item').hide();
+            $(`.gallery-item[data-category="${filter}"]`).show();
+        }
+    });
+
+    // Image modal
+    $('.view-image').click(function() {
+        const imgSrc = $(this).data('image');
+        const title = $(this).data('title');
+        const description = $(this).data('description');
+        const category = $(this).data('category');
+        
+        $('#modalImage').attr('src', imgSrc);
+        $('#modalTitle').text(title);
+        $('#modalDescription').text(description || 'No description available');
+        $('#modalCategory').html(`<span class="badge badge-pill badge-light">${category}</span>`);
+        $('#downloadBtn').attr('href', imgSrc);
+        
+        $('#imageModal').modal('show');
+    });
+
+    // Lightbox effect for images
+    $('.gallery-image').click(function() {
+        $(this).closest('.gallery-item').find('.view-image').click();
+    });
+});
+</script>
+{% endblock %}

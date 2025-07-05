@@ -1,0 +1,355 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Oasis Schools Arua | Our History & Values{% endblock %}
+
+{% block content %}
+    <style>
+        :root {
+            --primary-color: #2c5f8b;
+            --secondary-color: #f5a623;
+            --accent-color: #4caf50;
+            --light-bg: #f9f9f9;
+            --dark-text: #333333;
+            --light-text: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .admissions-intro {
+            text-align: center;
+            padding: 3rem 0;
+        }
+        
+        .admissions-intro h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .levels {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        
+        .level-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 350px;
+            transition: transform 0.3s ease;
+        }
+        
+        .level-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .level-header {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .level-header.nursery {
+            background-color: #8e44ad;
+        }
+        
+        .level-header.primary {
+            background-color: var(--primary-color);
+        }
+        
+        .level-body {
+            padding: 1.5rem;
+        }
+        
+        .level-body h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .level-body ul {
+            list-style-position: inside;
+            margin-bottom: 1.5rem;
+        }
+        
+        .level-body li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #3d8b40;
+        }
+        
+        .admission-process {
+            background-color: white;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .admission-process h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background-color: var(--secondary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+        
+        .step-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-section {
+            text-align: center;
+            padding: 3rem 0;
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .contact-section h2 {
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+    
+        @media (max-width: 768px) {
+            .levels {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .level-card {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .process-steps {
+                gap: 1rem;
+            }
+            
+            .step {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    
+    <main class="container">
+        <section class="admissions-intro">
+            <h2>Welcome to Oasis schools-Arua</h2>
+            <p>We are delighted that you are considering Oasis International School for your child's early education journey. Our nurturing environment, experienced faculty, and child-centered curriculum create the perfect foundation for lifelong learning.</p>
+        </section>
+        
+        <section>
+            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 1.5rem;">Our Educational Programs</h2>
+            <div class="levels">
+                <div class="level-card">
+                    <div class="level-header nursery">
+                        <h2>Nursery School</h2>
+                        <p>Ages 2-5 years</p>
+                    </div>
+                    <div class="level-body">
+                        <h3>Early Years Foundation</h3>
+                        <p>Our nursery program provides a warm, stimulating environment where young children can explore, discover, and grow.</p>
+                        <ul>
+                            <li>Play-based learning approach</li>
+                            <li>Small class sizes with individualized attention</li>
+                            <li>Focus on social, emotional, and cognitive development</li>
+                            <li>Specialized early literacy and numeracy programs</li>
+                            <li>Creative arts and physical development activities</li>
+                        </ul>
+                        <a href="#contact" class="btn">Inquire Now</a>
+                    </div>
+                </div>
+                
+                <div class="level-card">
+                    <div class="level-header primary">
+                        <h2>Primary School</h2>
+                        <p>Grades 1-6</p>
+                    </div>
+                    <div class="level-body">
+                        <h3>Building Strong Foundations</h3>
+                        <p>Our primary program offers a balanced curriculum that challenges students academically while nurturing their creativity and curiosity.</p>
+                        <ul>
+                            <li>Comprehensive core curriculum (English, Math, Science)</li>
+                            <li>Specialist teachers for Art, Music, and PE</li>
+                            <li>Project-based learning opportunities</li>
+                            <li>Technology integration in all subjects</li>
+                            <li>Character education and leadership development</li>
+                        </ul>
+                        <a href="#contact" class="btn">Inquire Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="admission-process">
+            <h2>Our Admission Process</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Inquiry</h3>
+                        <p>Submit an online inquiry form or contact our admissions office to schedule a school tour and receive detailed information.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Application</h3>
+                        <p>Complete the application form and submit required documents (birth certificate, previous school records if applicable, health records).</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Assessment</h3>
+                        <p>Nursery: Informal play-based observation<br>
+                        Primary: Basic skills assessment in literacy and numeracy</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Admission Decision</h3>
+                        <p>You will receive notification of the admission decision within 5 business days after assessment.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Enrollment</h3>
+                        <p>Complete enrollment paperwork and submit tuition deposit to secure your child's place.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2>Contact Our Admissions Team</h2>
+            <p>We're here to answer all your questions and guide you through the admissions process.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    <span>admissions@oasisschools.ac.ug</span>
+                </div>
+                
+                <div class="contact-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                    <span>+256 393 239-619</span>
+                </div>
+                
+                <div class="contact-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    <span>Arua city $ Koboko, West Nile-Uganda</span>
+                </div>
+            </div>
+            
+            <a href="apply.html" class="btn" style="margin-top: 2rem;">Apply Online Now</a>
+        </div>
+    </section>
+    
+</body>
+{% endblock%}

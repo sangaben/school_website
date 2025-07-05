@@ -1,0 +1,367 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Campuses - Oasis Schools Arua{% endblock %}
+
+{% block content %}
+<style>
+    /* Campuses Page Styles - Consistent with Contact Page */
+    .campuses-hero {
+        background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)), 
+                    url("{% static 'images/campuses-hero.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 6rem 1rem;
+        margin-bottom: 3rem;
+    }
+    
+    .campuses-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+    
+    .campuses-hero p {
+        font-size: 1.3rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .campuses-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem 4rem;
+    }
+    
+    .campuses-intro {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .campuses-intro h2 {
+        color: #003366;
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .campuses-intro h2::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -10px;
+        width: 80px;
+        height: 4px;
+        background-color: #e8b429;
+        transform: translateX(-50%);
+    }
+    
+    .campuses-intro p {
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 1.1rem;
+        color: #555;
+    }
+    
+    .campuses-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .campus-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .campus-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .campus-image {
+        height: 200px;
+        overflow: hidden;
+    }
+    
+    .campus-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    
+    .campus-card:hover .campus-image img {
+        transform: scale(1.05);
+    }
+    
+    .campus-content {
+        padding: 2rem;
+    }
+    
+    .campus-content h3 {
+        color: #003366;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+    
+    .campus-content h3::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 3px;
+        background-color: #e8b429;
+    }
+    
+    .campus-info {
+        margin-bottom: 1.5rem;
+        color: #555;
+        line-height: 1.6;
+    }
+    
+    .campus-features {
+        margin: 1.5rem 0;
+    }
+    
+    .campus-features h4 {
+        color: #003366;
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .features-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    
+    .features-list li {
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: flex-start;
+    }
+    
+    .features-list li i {
+        color: #e8b429;
+        margin-right: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .campus-link {
+        display: inline-block;
+        background-color: #003366;
+        color: white;
+        padding: 0.6rem 1.5rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+    }
+    
+    .campus-link:hover {
+        background-color: #e8b429;
+        color: #003366;
+    }
+    
+    .map-container {
+        margin: 3rem 0;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    
+    .map-container iframe {
+        width: 100%;
+        height: 450px;
+        border: none;
+    }
+    
+    @media (max-width: 768px) {
+        .campuses-hero {
+            padding: 4rem 1rem;
+        }
+        
+        .campuses-hero h1 {
+            font-size: 2.2rem;
+        }
+        
+        .campuses-hero p {
+            font-size: 1.1rem;
+        }
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="campuses-hero">
+    <h1>Our Campuses</h1>
+    <p>Discover the unique learning environments across our Oasis Schools campuses</p>
+</section>
+
+<!-- Campuses Content -->
+<div class="campuses-container">
+    <div class="campuses-intro">
+        <h2>Explore Our Learning Spaces</h2>
+        <p>Each Oasis Schools campus offers a distinct educational experience while maintaining our high standards of excellence and nurturing environment.</p>
+    </div>
+    
+    <div class="campuses-grid">
+        <!-- Main Campus -->
+        <div class="campus-card">
+            <div class="campus-image">
+                <img src="{% static 'images/main.jpg' %}" alt="Oasis Schools Main Campus">
+            </div>
+            <div class="campus-content">
+                <h3>Main Campus</h3>
+                <div class="campus-info">
+                    <p>Our flagship campus located on Nebbi Highway, offering comprehensive education from Nursery through Secondary.</p>
+                </div>
+                
+                <div class="campus-features">
+                    <h4>Key Features:</h4>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> State-of-the-art science labs</li>
+                        <li><i class="fas fa-check"></i> Sports complex</li>
+                        <li><i class="fas fa-check"></i> Library resource center</li>
+                        <li><i class="fas fa-check"></i> Computer laboratories</li>
+                    </ul>
+                </div>
+                
+                <div class="campus-info">
+                    <p><strong>Location:</strong> Nebbi Highway opposite Ceford, Abirichi Village, Arua</p>
+                </div>
+                
+                <a href="{% url 'main' %}" class="campus-link">Explore Campus</a>
+            </div>
+        </div>
+        
+        <!-- Annex Campus -->
+        <div class="campus-card">
+            <div class="campus-image">
+                <img src="{% static 'images/annex.jpg' %}" alt="Oasis Schools Annex Campus">
+            </div>
+            <div class="campus-content">
+                <h3>Annex Campus</h3>
+                <div class="campus-info">
+                    <p>Our specialized early learning center in Obolokofuku, focused on Nursery through Primary 3 education.</p>
+                </div>
+                
+                <div class="campus-features">
+                    <h4>Key Features:</h4>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Child-friendly learning spaces</li>
+                        <li><i class="fas fa-check"></i> Montessori-inspired classrooms</li>
+                        <li><i class="fas fa-check"></i> Outdoor play areas</li>
+                        <li><i class="fas fa-check"></i> Early childhood specialists</li>
+                    </ul>
+                </div>
+                
+                <div class="campus-info">
+                    <p><strong>Location:</strong> Obolokofuku, Arua City</p>
+                </div>
+                
+                <a href="{% url 'annex' %}" class="campus-link">Explore Campus</a>
+            </div>
+        </div>
+        
+        <!-- Golden Campus -->
+        <div class="campus-card">
+            <div class="campus-image">
+                <img src="{% static 'images/golden.jpg' %}" alt="Oasis Schools Golden Campus">
+            </div>
+            <div class="campus-content">
+                <h3>Golden Campus</h3>
+                <div class="campus-info">
+                    <p>Our Koboko campus bringing Oasis education standards to the West Nile region.</p>
+                </div>
+                
+                <div class="campus-features">
+                    <h4>Key Features:</h4>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Bilingual education programs</li>
+                        <li><i class="fas fa-check"></i> Cultural exchange initiatives</li>
+                        <li><i class="fas fa-check"></i> Agricultural learning center</li>
+                        <li><i class="fas fa-check"></i> Community engagement programs</li>
+                    </ul>
+                </div>
+                
+                <div class="campus-info">
+                    <p><strong>Location:</strong> Koboko Town</p>
+                </div>
+                
+                <a href="{% url 'golden' %}" class="campus-link">Explore Campus</a>
+            </div>
+        </div>
+        
+        <!-- Muni Campus -->
+        <div class="campus-card">
+            <div class="campus-image">
+                <img src="{% static 'images/muni.jpg' %}" alt="Oasis Schools Muni Campus">
+            </div>
+            <div class="campus-content">
+                <h3>Muni Campus</h3>
+                <div class="campus-info">
+                    <p>Our campus near Muni University focusing on advanced secondary education and university preparation.</p>
+                </div>
+                
+                <div class="campus-features">
+                    <h4>Key Features:</h4>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> University preparatory programs</li>
+                        <li><i class="fas fa-check"></i> Research facilities</li>
+                        <li><i class="fas fa-check"></i> Leadership development</li>
+                        <li><i class="fas fa-check"></i> STEM-focused curriculum</li>
+                    </ul>
+                </div>
+                
+                <div class="campus-info">
+                    <p><strong>Location:</strong> Muni University Road</p>
+                </div>
+                
+                <a href="{% url 'muni' %}" class="campus-link">Explore Campus</a>
+            </div>
+        </div>
+    </div>
+    
+    
+<script>
+    // Animation for campus cards on scroll
+    document.addEventListener('DOMContentLoaded', function() {
+        const campusCards = document.querySelectorAll('.campus-card');
+        
+        function animateCards() {
+            campusCards.forEach((card, index) => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (cardPosition < screenPosition) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Initialize cards as hidden
+        campusCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease';
+        });
+        
+        // Check on load and scroll
+        animateCards();
+        window.addEventListener('scroll', animateCards);
+    });
+</script>
+{% endblock %}

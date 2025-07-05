@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Muni Campus - Oasis Schools Arua{% endblock %}
+
+{% block content %}
+<style>
+    /* Campus Page Styles */
+    .campus-hero {
+        background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)), 
+                    url("{% static 'images/school-gate.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 5rem 1rem;
+        margin-bottom: 3rem;
+    }
+    
+    .campus-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+    
+    .campus-header {
+        color: #003366;
+        margin-bottom: 2rem;
+        text-align: center;
+        position: relative;
+    }
+    
+    .campus-header h1 {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+    }
+    
+    .campus-header p.lead {
+        font-size: 1.3rem;
+        color: #555;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .campus-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin: 3rem 0;
+    }
+    
+    .campus-info {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .campus-info h2 {
+        color: #003366;
+        margin-top: 0;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #e8b429;
+    }
+    
+    .grade-levels {
+        margin: 2rem 0;
+    }
+    
+    .grade-card {
+        background: #f8f9fa;
+        padding: 1.5rem;
+        border-radius: 6px;
+        margin-bottom: 1rem;
+        border-left: 4px solid #e8b429;
+    }
+    
+    .grade-card h3 {
+        color: #003366;
+        margin-top: 0;
+    }
+    
+    .facilities-list {
+        columns: 2;
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    .facilities-list li {
+        margin-bottom: 0.8rem;
+        position: relative;
+        padding-left: 1.5rem;
+    }
+    
+    .facilities-list li:before {
+        content: "✓";
+        color: #e8b429;
+        position: absolute;
+        left: 0;
+        font-weight: bold;
+    }
+    
+    .campus-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin: 3rem 0;
+    }
+    
+    .gallery-item {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover {
+        transform: translateY(-5px);
+    }
+    
+    .gallery-item img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+    
+    .cta-section {
+        text-align: center;
+        margin: 3rem 0;
+    }
+    
+    @media (max-width: 992px) {
+        .campus-content {
+            grid-template-columns: 1fr;
+        }
+        
+        .facilities-list {
+            columns: 1;
+        }
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="campus-hero">
+    <div class="campus-container">
+        <h1>Muni Campus</h1>
+        <p class="lead">Nurturing young minds from Primary 1 to Primary 7 in the heart of Muni</p>
+    </div>
+</section>
+
+<div class="campus-container">
+    <!-- Campus Header -->
+    <div class="campus-header">
+        <h1>Oasis Schools Arua - Muni Campus</h1>
+        <p class="lead">Welcome to our vibrant Muni Campus, providing quality primary education in a nurturing environment since 2014</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="campus-content">
+        <div class="campus-info">
+            <h2>About Our Muni Campus</h2>
+            <p>Located in the peaceful Muni neighborhood of Arua, our Muni Campus specializes in primary education for students from Primary 1 through Primary 7. We provide a child-friendly learning environment that balances academic rigor with creative exploration.</p>
+            
+            <p>Our campus features spacious classrooms, dedicated play areas, and experienced teachers who understand the unique needs of primary school students. The Muni Campus is known for its warm, family-like atmosphere where every child feels valued and supported.</p>
+            
+            <div class="grade-levels">
+                <h2>Grade Levels Offered</h2>
+                <div class="grade-card">
+                    <h3>Lower Primary (P1-P3)</h3>
+                    <p>Foundational learning with emphasis on literacy, numeracy, and social skills development.</p>
+                </div>
+                <div class="grade-card">
+                    <h3>Upper Primary (P4-P7)</h3>
+                    <p>Advanced curriculum preparing pupils for secondary education with specialized subject teachers.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="campus-info">
+            <h2>Campus Facilities</h2>
+            <ul class="facilities-list">
+                <li>Spacious, well-ventilated classrooms</li>
+                <li>Interactive digital learning tools</li>
+                <li>Child-friendly playground equipment</li>
+                <li>School garden for environmental education</li>
+                <li>Reading corner with age-appropriate books</li>
+                <li>Secure campus with controlled access</li>
+                <li>Clean water and sanitation facilities</li>
+                <li>First aid and health monitoring</li>
+            </ul>
+            
+            <h2 style="margin-top: 2rem;">Our Approach</h2>
+            <p>At Muni Campus, we believe in:</p>
+            <ul class="facilities-list">
+                <li>Child-centered learning</li>
+                <li>Learning through play</li>
+                <li>Values-based education</li>
+                <li>Parent-teacher collaboration</li>
+                <li>Holistic development</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Photo Gallery -->
+    <h2 style="text-align: center; margin-bottom: 1.5rem;">Campus Life at Muni</h2>
+    <div class="campus-gallery">
+        <div class="gallery-item">
+            <img src="{% static 'images/muni-classroom.jpg' %}" alt="Classroom at Muni Campus">
+        </div>
+        <div class="gallery-item">
+            <img src="{% static 'images/muni-playground.jpg' %}" alt="Playground at Muni Campus">
+        </div>
+        <div class="gallery-item">
+            <img src="{% static 'images/muni-students.jpg' %}" alt="Students at Muni Campus">
+        </div>
+        <div class="gallery-item">
+            <img src="{% static 'images/muni-event.jpg' %}" alt="School event at Muni Campus">
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="cta-section">
+        <h2>Experience the Muni Campus Difference</h2>
+        <p>Schedule a visit to see our facilities and meet our dedicated teachers</p>
+        <a href="{% url 'contact' %}" class="cta-button" style="display: inline-block; margin-top: 1rem;">
+            Contact Us Today <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</div>
+{% endblock %}

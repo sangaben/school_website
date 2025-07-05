@@ -1,0 +1,299 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Oasis Schools Arua | Our History & Values{% endblock %}
+
+{% block content %}
+<style>
+    /* About Page Specific Styles */
+    .about-hero {
+        background: linear-gradient(rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.85)), 
+                    url("{% static 'images/school-gate.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+        padding: 5rem 1rem;
+        margin-bottom: 3rem;
+    }
+    
+    .about-hero h1 {
+        font-size: 2.8rem;
+        margin-bottom: 1rem;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+    
+    .about-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+    
+    .about-section {
+        margin-bottom: 4rem;
+    }
+    
+    .section-header {
+        color: #003366;
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 0.8rem;
+        font-size: 2rem;
+    }
+    
+    .section-header:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 80px;
+        height: 4px;
+        background-color: #e8b429;
+    }
+    
+    .history-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        margin: 3rem 0;
+    }
+    
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+    }
+    
+    .value-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        border-left: 4px solid #e8b429;
+    }
+    
+    .value-card h3 {
+        color: #003366;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    .value-icon {
+        margin-right: 1rem;
+        color: #e8b429;
+        font-size: 1.5rem;
+    }
+    
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+    }
+    
+    .team-member {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    
+    .team-photo {
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #e8b429;
+        margin: 0 auto 1rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .achievements {
+        background-color: #f8f9fa;
+        padding: 3rem;
+        border-radius: 8px;
+        margin: 3rem 0;
+    }
+    
+    .achievement-item {
+        display: flex;
+        margin-bottom: 1.5rem;
+    }
+    
+    .achievement-icon {
+        color: #e8b429;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        margin-top: 0.3rem;
+    }
+    
+    @media (max-width: 768px) {
+        .history-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .about-hero h1 {
+            font-size: 2.2rem;
+        }
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="about-hero">
+    <div class="about-container">
+        <h1>About Oasis Schools Arua</h1>
+        <p class="lead">Nurturing future leaders through quality education since 2014</p>
+    </div>
+</section>
+
+<div class="about-container">
+    <!-- School History -->
+    <section class="about-section">
+        <h2 class="section-header">Our History</h2>
+        <div class="history-grid">
+            <div>
+                <p>Founded in 2014, Oasis Schools Arua began as a small educational initiative with just three classrooms and a vision to transform education in the West Nile region. What started as a humble beginning has now flourished into one of Arua's most respected educational institutions.</p>
+                
+                <p>Our founder, [Founder's Name], envisioned a school that would combine academic rigor with strong moral values, creating well-rounded individuals prepared to meet the challenges of the modern world.</p>
+                
+                <p>Over the years, we've expanded our facilities, grown our academic programs, and most importantly, maintained our commitment to excellence in both education and character development.</p>
+            </div>
+            <div>
+                <img src="{% static 'images/school-history.jpg' %}" alt="Oasis Schools Early Days" style="width:100%; border-radius:8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="about-section">
+        <h2 class="section-header">Our Core Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <h3><i class="fas fa-graduation-cap value-icon"></i> Academic Excellence</h3>
+                <p>We maintain high academic standards through innovative teaching methods, regular assessments, and a curriculum that challenges students to achieve their full potential.</p>
+            </div>
+            
+            <div class="value-card">
+                <h3><i class="fas fa-heart value-icon"></i> Moral Integrity</h3>
+                <p>We instill strong Christian values, emphasizing honesty, respect, and responsibility to develop students of good character.</p>
+            </div>
+            
+            <div class="value-card">
+                <h3><i class="fas fa-users value-icon"></i> Community</h3>
+                <p>We foster a supportive environment where students, teachers, and parents work together to create a nurturing learning community.</p>
+            </div>
+            
+            <div class="value-card">
+                <h3><i class="fas fa-lightbulb value-icon"></i> Innovation</h3>
+                <p>We embrace modern teaching technologies and methodologies to prepare students for the challenges of the 21st century.</p>
+            </div>
+            
+            <div class="value-card">
+                <h3><i class="fas fa-hand-holding-heart value-icon"></i> Service</h3>
+                <p>We cultivate a spirit of service and social responsibility, encouraging students to make positive contributions to society.</p>
+            </div>
+            
+            <div class="value-card">
+                <h3><i class="fas fa-star value-icon"></i> Holistic Development</h3>
+                <p>We believe in educating the whole child - intellectually, physically, emotionally, and spiritually.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team -->
+    <section class="about-section">
+        <h2 class="section-header">Our Leadership Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="{% static 'images/Likicho.png' %}" alt="Headteacher" class="team-photo">
+                <h3>Likicho Hajira</h3>
+                <p>Headteacher-Muni campus</p>
+                <p>B.Ed, M.Ed, 10+ years experience</p>
+            </div>
+            
+            <div class="team-member">
+                <img src="{% static 'images/deputy.jpg' %}" alt="Deputy Headteacher" class="team-photo">
+                <h3>[Deputy's Name]</h3>
+                <p>Deputy Headteacher</p>
+                <p>B.Sc Education, 10+ years experience</p>
+            </div>
+            
+            <div class="team-member">
+                <img src="{% static 'images/administrator.jpg' %}" alt="School Administrator" class="team-photo">
+                <h3>[Administrator's Name]</h3>
+                <p>School Administrator</p>
+                <p>BBA, MBA, 8+ years experience</p>
+            </div>
+        </div>
+        
+        <p style="text-align: center; margin-top: 2rem;">
+            <a href="{% url 'contact' %}" class="cta-button" style="display: inline-block;">
+                Meet Our Full Team <i class="fas fa-arrow-right"></i>
+            </a>
+        </p>
+    </section>
+
+    <!-- Achievements -->
+    <section class="about-section">
+        <h2 class="section-header">Our Achievements</h2>
+        <div class="achievements">
+            <div class="achievement-item">
+                <div class="achievement-icon">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <div>
+                    <h3>Academic Excellence</h3>
+                    <p>Consistently ranked among the top performing schools in Arua District in national examinations.</p>
+                </div>
+            </div>
+            
+            <div class="achievement-item">
+                <div class="achievement-icon">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <div>
+                    <h3>Sports Champions</h3>
+                    <p>Multiple regional championships in football, athletics, and netball over the past 5 years.</p>
+                </div>
+            </div>
+            
+            <div class="achievement-item">
+                <div class="achievement-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <div>
+                    <h3>Innovation Awards</h3>
+                    <p>Recognized by the Ministry of Education for our innovative ICT integration in teaching.</p>
+                </div>
+            </div>
+            
+            <div class="achievement-item">
+                <div class="achievement-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div>
+                    <h3>Community Impact</h3>
+                    <p>Awarded for our outstanding community service programs benefiting local villages.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="about-section" style="text-align: center;">
+        <h2 class="section-header">Become Part of Our Story</h2>
+        <p style="max-width: 800px; margin: 0 auto 2rem;">
+            At Oasis Schools Arua, we're more than just a school - we're a community dedicated to nurturing the next generation of leaders, thinkers, and change-makers. Join us on this journey of educational excellence.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+            <a href="{% url 'contact' %}" class="cta-button">
+                Contact Us <i class="fas fa-envelope"></i>
+            </a>
+            <a href="{% url 'classes' %}" class="cta-button" style="background-color: #e8b429; color: #003366;">
+                Our Programs <i class="fas fa-book-open"></i>
+            </a>
+        </div>
+    </section>
+</div>
+{% endblock %}
