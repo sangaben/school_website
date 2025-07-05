@@ -2,16 +2,6 @@ services:
   - type: web
     name: school-website
     env: python
-    plan: free
-    branch: main
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn school_website.wsgi"
-    envVars:
-      - key: SECRET_KEY
-        sync: false
-      - key: DEBUG
-        value: "False"
-      - key: EMAIL_HOST_USER
-        sync: false
-      - key: EMAIL_HOST_PASSWORD
-        sync: false
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn school_website.wsgi
+    staticPublishPath: staticfiles
